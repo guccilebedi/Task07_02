@@ -29,33 +29,33 @@ public class Graph {
     }
 
     public void color() {
-        int c = 1;
-        int maxC = 1;
+        int temp = 1;
+        int maxTemp = 1;
         for (int i = 0; i < vertexCount; i++) {
-            vertexArr[i].setColor(String.valueOf(c));
+            vertexArr[i].setColor(String.valueOf(temp));
         }
         for (int i = 0; i < vertexCount; i++) {
             for (int j = 0; j < vertexCount; j++) {
                 if (adjMatrix[i][j]) {
                     while (vertexArr[i].getColor().equals(vertexArr[j].getColor())) {
-                        c++;
-                        if (c > maxC) {
-                            maxC = c;
+                        temp++;
+                        if (temp > maxTemp) {
+                            maxTemp = temp;
                         }
-                        vertexArr[j].setColor(String.valueOf(c));
+                        vertexArr[j].setColor(String.valueOf(temp));
                     }
-                    c = 1;
+                    temp = 1;
                 }
             }
         }
-        for (int i = maxC; i > 0; i--) {
+        for (int i = maxTemp; i > 0; i--) {
             String color = String.valueOf((int) (Math.random() * 0x1000000));
             for (int j = 0; j < vertexCount; j++) {
-                if (Integer.parseInt(vertexArr[j].getColor()) == maxC) {
+                if (Integer.parseInt(vertexArr[j].getColor()) == maxTemp) {
                     vertexArr[j].setColor(color);
                 }
             }
-            maxC--;
+            maxTemp--;
         }
     }
 
